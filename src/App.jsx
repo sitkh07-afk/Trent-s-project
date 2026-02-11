@@ -137,9 +137,10 @@ CRITICAL RULES:
 
 async function fetchLiveEvents(query) {
   // Try local API route first (Vercel/deployed), fallback to direct Anthropic API (Claude.ai artifact)
+   const BACKEND_URL = "https://trent-project-backend.onrender.com";
   try {
     // Attempt 1: Local serverless function (works when deployed)
-    const localResp = await fetch("/api/search", {
+    const localResp = await fetch("${BACKEND_URL}/api/search", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
